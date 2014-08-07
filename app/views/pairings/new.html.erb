@@ -1,0 +1,20 @@
+<h2> Record a Pairing w/ <%= @partner.name %></h2>
+
+<div class="schedule-container">
+  <div class="pairing-schedule">
+    <%= image_tag @partner.photo_name %>
+  </div>
+
+
+  <%= form_for [@user, @pairing] do |f| %>
+      <% @pairing.errors.full_messages.each do |message| %>
+          <div class="errors"><%= message %></div>
+      <% end %>
+      <%=f.hidden_field :partner_id, value: @partner.id %>
+      <%= f.label :date, "When did you pair with #{@partner.name}"  %>
+      <p><%= f.date_field :date %></p>
+
+
+      <%= f.submit "Create Pairing" %>
+  <% end %>
+</div>

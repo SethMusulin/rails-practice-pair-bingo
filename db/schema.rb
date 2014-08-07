@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701062112) do
+ActiveRecord::Schema.define(version: 20140805154454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pairings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "partner_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pairings", ["partner_id"], name: "index_pairings_on_partner_id", using: :btree
+  add_index "pairings", ["user_id"], name: "index_pairings_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string "name",            null: false
